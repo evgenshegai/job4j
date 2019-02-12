@@ -3,14 +3,14 @@ package ru.job4j.calculate;
 /**
 *Calculate
 *
-*@author Evgenii Shegai (evgeniishegai@yandex.ru)
+*@author EvgeniiShegai (evgeniishegai@yandex.ru)
 */
 
 public class Calculate {
 	
 	/**
 	* Method main
-	*@param [] args
+	*@param String[] args
 	*@return Hello my friend
 	*/
 	
