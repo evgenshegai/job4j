@@ -10,8 +10,8 @@ public class Calculate {
 	
 	/**
 	* Method main
-	*@param String[] args
-	*@return Hello my friend
+	*@param args - args.
+	*
 	*/
 	
 	public static void main(String[] args) {
