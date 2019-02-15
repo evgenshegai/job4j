@@ -8,22 +8,26 @@ package ru.job4j.calculate;
 
 public class Calculate {
 	
-	/**
-	* Method main
-	*@param args - args.
-	*
-	*/
-	
-	public static void main(String[] args) {
-		System.out.println("Hello my friend");
-	}
-	
-	/**
-   * Method echo.
-   * @param name Your name.
-   * @return Echo plus your name.
-   */
-    public String echo(String name) {
-    return "Echo, echo, echo : " + name;
-    }
+   private double result;
+
+   public void add(double first, double second) {
+       this.result = first + second;
+   }
+
+   public void subtract(double first, double second) {
+       this.result = first - second;
+   }
+
+   public void div(double first, double second) {
+       this.result = first / second;
+   }
+
+   public void multiple(double first, double second) {
+       this.result = first * second;
+   }
+
+   public double getResult() {
+       return  this.result;
+   }
+
 }

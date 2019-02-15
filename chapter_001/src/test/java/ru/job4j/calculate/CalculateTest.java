@@ -15,12 +15,37 @@ import static org.junit.Assert.assertThat;
 public class CalculateTest {
 	
 	@Test
-	public void whenTakeNameThenThreeEchoPlusName() {
-    String input = "Evgenii Shegai";
-    String expect = "Echo, echo, echo : Evgenii Shegai"; 
-    Calculate calc = new Calculate();
-    String result = calc.echo(input);
-    assertThat(result, is(expect));
+	public void whenAdd() {
+	    Calculate calculate = new Calculate();
+	    calculate.add(1.0, 1.0);
+	    double result = calculate.getResult();
+	    assertThat(result, is(2.0));
     }
+
+    @Test
+    public void whenSubtract() {
+        Calculate calculate = new Calculate();
+        calculate.subtract(2.0, 1.0);
+        double result = calculate.getResult();
+        assertThat(result, is(1.0));
+    }
+
+    @Test
+    public void whenDiv() {
+        Calculate calculate = new Calculate();
+        calculate.div(2.0, 1.0);
+        double result = calculate.getResult();
+        assertThat(result, is(2.0));
+    }
+
+    @Test
+    public void whenMultiply() {
+        Calculate calculate = new Calculate();
+        calculate.multiple(2.0, 1.0);
+        double result = calculate.getResult();
+        assertThat(result, is(2.0));
+    }
+
+
 	
 }
