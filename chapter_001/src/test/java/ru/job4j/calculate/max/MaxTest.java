@@ -21,4 +21,10 @@ public class MaxTest {
         assertThat(result, is(2));
     }
 
+    @Test
+    public void maxFromThreeNumbers() {
+        Max max = new Max();
+        int result = max.max2(2, 5, 3);
+        assertThat(result, is(5));
+    }
 }
