@@ -20,4 +20,10 @@ public class FactorialTest {
         assertThat(result, is(120));
     }
 
+    @Test
+    public void facrtorialZero() {
+        Factorial factorial = new Factorial();
+        int result = factorial.calc(0);
+        assertThat(result, is(1));
+    }
 }
