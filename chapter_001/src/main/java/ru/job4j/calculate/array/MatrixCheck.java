@@ -20,13 +20,12 @@ public class MatrixCheck {
     public boolean mono(boolean[][] data) {
         boolean result = false;
         for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
                 if ((data[0][0] == data[data[i].length - 1][data[i].length - 1])
-                        && (data[0][data[j].length - 1] == data[data[i].length - 1][0])) {
+                        && (data[0][data[i].length - 1] == data[data[i].length - 1][0])) {
                         result = true;
                 }
             }
-        }
+
 
         return result;
     }
