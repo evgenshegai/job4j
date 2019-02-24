@@ -21,17 +21,15 @@ public class ArrayChar {
      * @return булево значение
      */
     public boolean startWith(String prefix) {
-        boolean result = false;
-        int count = 0;
+        boolean result = true;
         char[] temp = prefix.toCharArray();
         for (int i = 0; i < temp.length; i++) {
-            if (data[i] == temp[i]) {
-                count++;
+            if (data[i] != temp[i]) {
+               result = false;
+               break;
             }
         }
-        if (count == temp.length) {
-            result = true;
-        }
+
         return result;
     }
 }
