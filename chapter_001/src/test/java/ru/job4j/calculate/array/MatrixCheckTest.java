@@ -20,7 +20,7 @@ public class MatrixCheckTest {
         boolean[][] array = {{false, true, false},
                              {true, false, true},
                              {false, true, false}};
-        boolean result = matrixCheck.mono(array);
+` `        boolean result = matrixCheck.mono(array);
         assertThat(result, is(true));
     }
 
@@ -31,6 +31,19 @@ public class MatrixCheckTest {
                              {false, true}};
 
         boolean result = matrixCheck.mono(array);
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void whenDataNotMonoByFalseThenFalse() {
+        MatrixCheck check = new MatrixCheck();
+        boolean[][] input = new boolean[][] {
+                {true, true, true, true},
+                {true, false, true, true},
+                {true, true, true, true},
+                {true, true, true, true}
+        };
+        boolean result = check.mono(input);
         assertThat(result, is(false));
     }
 }
