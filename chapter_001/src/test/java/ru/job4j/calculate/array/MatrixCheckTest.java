@@ -20,7 +20,7 @@ public class MatrixCheckTest {
         boolean[][] array = {{false, true, false},
                              {true, false, true},
                              {false, true, false}};
-` `        boolean result = matrixCheck.mono(array);
+        boolean result = matrixCheck.mono(array);
         assertThat(result, is(true));
     }
 
