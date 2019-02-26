@@ -85,13 +85,13 @@ public class Logic {
                   count++;
                   if (count == table[out].length - 1) {
                       result = true;
-                      break;
+                     return result;
                   }
               } else if (table[out][in] == 1 && table[out + 1][in] == 1) {
                   count2++;
                   if (count2 == table.length - 1) {
                       result = true;
-                      break;
+                     return result;
                   }
               }
 
