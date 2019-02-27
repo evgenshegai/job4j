@@ -83,7 +83,8 @@ public class Logic {
             for (int in = 0; in < table[out].length - 1; in++) {
               if (table[out][in] == 1 && table[out][in + 1] == 1) {
                   count++;
-              } else if (table[out][in] == 1 && table[out + 1][in] == 1) {
+              }
+              if (table[out][in] == 1 && table[out + 1][in] == 1) {
                   count2++;
               }
             }
