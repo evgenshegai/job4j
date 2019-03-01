@@ -5,6 +5,7 @@ package ru.job4j.tracker;
  * @author EvgeniiShegai (evgeniishegai@yandex.ru)
  */
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
@@ -30,6 +31,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < items.length; i++) {
             if (item != null && items[i].getId().equals(id)) {
+                item.setId(id);
                 items[i] = item;
                 result = true;
                 break;
@@ -40,20 +42,26 @@ public class Tracker {
 
     public Item[] findAll() {
         Item[] result = new Item[position];
+        int count = 0;
         for (int index = 0; index < result.length; index++) {
             result[index] = items[index];
+            if (items[index] == null) {
+                count++;
+            }
         }
+        result = Arrays.copyOf(result, result.length - count);
         return result;
     }
 
     public Item[] findByName(String name) {
         Item[] result = new Item[position];
         int index2 = 0;
-        for (int index = 0; index < result.length; index++) {
-            if (items[index].getName().equals(name)) {
+        for (int index = 0; index < items.length; index++) {
+            if (items[index] != null && items[index].getName().equals(name)) {
                 result[index2++] = items[index];
             }
         }
+        result = Arrays.copyOf(result, result.length - index2);
         return result;
     }
 
@@ -70,12 +78,14 @@ public class Tracker {
 
     public boolean delete(String id) {
         boolean result = false;
-        for (int index = 0; index < position; index++) {
+        for (int index = 0; index < items.length; index++) {
             if (items[index] != null && items[index].getId().equals(id)) {
-                System.arraycopy(items, index + 1, items, index, position - index - 1);
+                System.arraycopy(items, index + 1, items, index, items.length - index - 1);
                 result = true;
+                break;
             }
         }
+
         return result;
     }
 }
