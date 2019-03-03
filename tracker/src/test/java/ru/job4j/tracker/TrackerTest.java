@@ -72,6 +72,7 @@ public class TrackerTest {
         Item second = new Item("test2", "desc2", 2);
         Item temp = tracker.add(first);
         tracker.add(second);
-        assertThat(tracker.delete(temp.getId()), is(true));
+        tracker.delete(temp.getId());
+        assertThat(tracker.findAll()[0].getName(), is(second.getName()));
     }
 }
