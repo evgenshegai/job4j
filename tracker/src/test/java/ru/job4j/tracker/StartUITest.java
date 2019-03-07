@@ -35,7 +35,7 @@ public class StartUITest {
 
     @Test
     public void whenUserAddItem() {
-        Input input = new StubInput(new String[] {"0", "test", "desc", "1", "6"});
+        Input input = new StubInput(new String[] {"0", "test", "desc", "1", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test"));
     }
@@ -43,7 +43,7 @@ public class StartUITest {
     @Test
     public void whenAddItemThenUpdateItem() {
         tracker.add(item);
-        Input input = new StubInput(new String[] {"2", item.getId(), "test2", "desc2", "2", "6"});
+        Input input = new StubInput(new String[] {"1", item.getId(), "test2", "desc2", "2", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test2"));
     }
@@ -52,7 +52,7 @@ public class StartUITest {
     public void whenAddItemsThenFindItemById() {
         tracker.add(item);
         Item temp = tracker.add(item2);
-        Input input = new StubInput(new String[] {"4", temp.getId(), "6"});
+        Input input = new StubInput(new String[] {"4", temp.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findById(temp.getId()), is(temp));
     }
@@ -61,7 +61,7 @@ public class StartUITest {
     public void whenAddItemsThenDeleteOneItem() {
         Item temp = tracker.add(item);
         tracker.add(item2);
-        Input input = new StubInput(new String[] {"3", temp.getId(), "6"});
+        Input input = new StubInput(new String[] {"3", temp.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is(item2.getName()));
     }
@@ -70,7 +70,7 @@ public class StartUITest {
     public void whenAddItemsThenDisplayAll() {
         tracker.add(item);
         tracker.add(item2);
-        Input input = new StubInput(new String[] {"1", "6"});
+        Input input = new StubInput(new String[] {"2", "y"});
         new StartUI(input, tracker).init();
         Item[] result = {item, item2};
         assertThat(result, is(tracker.findAll()));

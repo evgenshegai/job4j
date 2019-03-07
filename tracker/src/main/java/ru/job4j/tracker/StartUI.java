@@ -23,26 +23,12 @@ public class StartUI {
     }
 
     public void init() {
-        boolean exit = false;
-        while (!exit) {
-            this.showMenu();
-            String answer = this.input.ask("Введите пункт меню");
-            if (answer.equals(ADD)) {
-                this.createItem();
-            } else if (answer.equals(SHOWALL)) {
-                this.showAll();
-            } else if (answer.equals(EDIT)) {
-                this.edit();
-            } else if (answer.equals(DELETE)) {
-                this.delete();
-            } else if (answer.equals(FINDITEMBYID)) {
-                this.findById();
-            } else  if (answer.equals(FINDITEMBYNAME)) {
-                this.findByName();
-            } else if (answer.equals(EXIT)) {
-                exit = true;
-            }
-        }
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(input.ask("select:")));
+        } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     private void showMenu() {
