@@ -10,6 +10,8 @@ import java.util.List;
 
 class DeleteItem implements UserAction {
 
+    private boolean result;
+
     @Override
     public int key() {
         return 3;
@@ -19,12 +21,12 @@ class DeleteItem implements UserAction {
     public void execute(Input input, Tracker tracker) {
         System.out.println("Удаляю заявку");
         String id = input.ask(" Введите айди удаляемой заявки");
-        tracker.delete(id);
+        this.result = tracker.delete(id);
     }
 
     @Override
     public String info() {
-        return String.format("%s. %s", this.key(), "Delete item ");
+        return String.format("%s. %s. %s",this.key(), "Delete item", result);
     }
 }
 
@@ -90,6 +92,8 @@ public class MenuTracker {
 
     private static class UpdateItem implements UserAction {
 
+        private boolean result;
+
         @Override
         public int key() {
             return 1;
@@ -103,12 +107,12 @@ public class MenuTracker {
             String desc = input.ask("Введите описание новой заявки");
             long create = Long.parseLong(input.ask("Введите дату создания новой заявки"));
             Item temp = new Item(name, desc, create);
-            tracker.replace(id, temp);
+            this.result = tracker.replace(id, temp);
         }
 
         @Override
         public String info() {
-            return String .format("%s. %s", this.key(), "Edit the item");
+            return String .format("%s. %s. %s", this.key(), "Edit the item", result);
         }
     }
 
@@ -145,9 +149,16 @@ public class MenuTracker {
        @Override
        public void execute(Input input, Tracker tracker) {
            System.out.println("Нахожу заявку по айди");
+           Item result = null;
            String id = input.ask("Введите айди заявки");
-           Item result = tracker.findById(id);
-           System.out.println("Заявка найдена. Ее имя - " + result.getName());
+           try {
+               result = tracker.findById(id);
+               System.out.println("Заявка найдена. Ее имя - " + result.getName());
+           } catch (NullPointerException npe) {
+               System.out.println("Заявка не найдена . Введите корректное id");
+           }
+
+
        }
 
        @Override
