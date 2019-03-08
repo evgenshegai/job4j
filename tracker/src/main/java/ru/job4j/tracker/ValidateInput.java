@@ -1,8 +1,25 @@
 package ru.job4j.tracker;
 
+/**
+ * Класс проверяет корректность ввода
+ * @author Shegai Evgenii
+ */
+
 import java.util.List;
 
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
+
+    private Input input;
+
+    public ValidateInput(Input input) {
+        this.input = input;
+    }
+
+
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
 
     @Override
     public int ask(String question, List<Integer> ranges) {
@@ -11,7 +28,7 @@ public class ValidateInput extends ConsoleInput {
         int value = -1;
         do {
             try {
-                value =  super.ask(question, ranges);
+                value =  this.input.ask(question, ranges);
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 System.out.println("Please enter valid data");

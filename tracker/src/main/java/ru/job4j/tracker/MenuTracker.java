@@ -12,7 +12,7 @@ class DeleteItem implements UserAction {
 
     private boolean result;
 
-    @Overrideva
+    @Override
     public int key() {
         return 3;
     }
