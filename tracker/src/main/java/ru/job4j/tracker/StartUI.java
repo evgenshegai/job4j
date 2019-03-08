@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Основной класс трекера
  * @author Evgenii Shegai
@@ -17,6 +20,7 @@ public class StartUI {
     private static final String FINDITEMBYNAME = "5";
     private static final String EXIT = "6";
 
+
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
@@ -24,10 +28,14 @@ public class StartUI {
 
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        List<Integer> ranges = new ArrayList<>();
         menu.fillActions();
         do {
+            for (int i = 0; i < menu.getActionsLentgh(); i++) {
+                ranges.add(i);
+            }
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select(input.ask("select:", ranges));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
@@ -108,7 +116,7 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
-         new StartUI(new ConsoleInput(), new Tracker()).init();
+         new StartUI(new ValidateInput(), new Tracker()).init();
     }
 
 }

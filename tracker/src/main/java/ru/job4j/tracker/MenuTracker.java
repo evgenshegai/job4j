@@ -12,7 +12,7 @@ class DeleteItem implements UserAction {
 
     private boolean result;
 
-    @Override
+    @Overrideva
     public int key() {
         return 3;
     }
@@ -26,7 +26,7 @@ class DeleteItem implements UserAction {
 
     @Override
     public String info() {
-        return String.format("%s. %s. %s",this.key(), "Delete item", result);
+        return String.format("%s. %s. %s", this.key(), "Delete item", result);
     }
 }
 
