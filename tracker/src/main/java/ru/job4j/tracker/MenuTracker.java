@@ -22,11 +22,16 @@ class DeleteItem implements UserAction {
         System.out.println("Удаляю заявку");
         String id = input.ask(" Введите айди удаляемой заявки");
         this.result = tracker.delete(id);
+        if (result) {
+            System.out.println("Item was delete");
+        } else {
+            System.out.println("Item not found");
+        }
     }
 
     @Override
     public String info() {
-        return String.format("%s. %s. %s", this.key(), "Delete item", result);
+        return String.format("%s. %s", this.key(), "Delete item");
     }
 }
 
@@ -108,11 +113,16 @@ public class MenuTracker {
             long create = Long.parseLong(input.ask("Введите дату создания новой заявки"));
             Item temp = new Item(name, desc, create);
             this.result = tracker.replace(id, temp);
+            if (result) {
+                System.out.println("Item was update");
+            } else {
+                System.out.println("Item not found");
+            }
         }
 
         @Override
         public String info() {
-            return String .format("%s. %s. %s", this.key(), "Edit the item", result);
+            return String .format("%s. %s", this.key(), "Edit the item");
         }
     }
 
@@ -151,14 +161,12 @@ public class MenuTracker {
            System.out.println("Нахожу заявку по айди");
            Item result = null;
            String id = input.ask("Введите айди заявки");
-           try {
-               result = tracker.findById(id);
-               System.out.println("Заявка найдена. Ее имя - " + result.getName());
-           } catch (NullPointerException npe) {
-               System.out.println("Заявка не найдена . Введите корректное id");
+           result = tracker.findById(id);
+           if (result != null) {
+               System.out.println("Item was found" + result.getName());
+           } else {
+               System.out.println("Item not found");
            }
-
-
        }
 
        @Override
