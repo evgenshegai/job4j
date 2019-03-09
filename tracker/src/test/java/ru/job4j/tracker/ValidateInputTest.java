@@ -39,7 +39,17 @@ public class ValidateInputTest {
         List<Integer> list = new ArrayList<>();
         list.add(1);
         input.ask("Enter", list);
-        assertThat(this.mem.toString(), is(String.format("Please enter validate data" + System.lineSeparator()))
+        assertThat(this.mem.toString(), is(String.format("Please enter valid data" + System.lineSeparator()))
+        );
+    }
+
+    @Test
+    public void whenInvalidInput2() {
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"-1", "1"}));
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        input.ask("Enter", list);
+        assertThat(this.mem.toString(), is(String.format("Please enter data from range" + System.lineSeparator()))
         );
     }
 

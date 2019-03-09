@@ -23,14 +23,21 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, List<Integer> ranges) {
-        int key = -1;
-        try {
+        int key = 0;
+        boolean temp = false;
              key = Integer.valueOf(this.ask(question));
-        } catch (NumberFormatException nfe) {
-            System.out.println("Please enter validate data");
-        }
+             for (int index : ranges) {
+                 if (key == index) {
+                     temp = true;
+                     break;
+                 }
 
-        return key;
+             }
+             if (temp) {
+                 return key;
+             } else {
+                 throw  new MenuOutException("out of menu range");
+             }
 
     }
 }
