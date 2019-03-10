@@ -48,7 +48,7 @@ public class StartUITest {
                 .append("3. Delete item" + ln)
                 .append("4. Find item by id" + ln)
                 .append("5. Find item by name" + ln)
-                .append("6.Exit from programm" + ln)
+                .append("6. Exit from programm" + ln)
                 .append("Создание новой заявки" + ln)
                 .toString()));
     }
@@ -67,7 +67,7 @@ public class StartUITest {
                 .append("3. Delete item" + ln)
                 .append("4. Find item by id" + ln)
                 .append("5. Find item by name" + ln)
-                .append("6.Exit from programm" + ln)
+                .append("6. Exit from programm" + ln)
                 .append("Редактирую заявку" + ln)
                 .append("Item was update" + ln)
                 .toString()));
@@ -89,7 +89,7 @@ public class StartUITest {
                 .append("3. Delete item" + ln)
                 .append("4. Find item by id" + ln)
                 .append("5. Find item by name" + ln)
-                .append("6.Exit from programm" + ln)
+                .append("6. Exit from programm" + ln)
                 .append("Нахожу заявку по айди" + ln)
                 .append("Item was foundtest2" + ln)
                 .toString()));
@@ -111,7 +111,7 @@ public class StartUITest {
                 .append("3. Delete item" + ln)
                 .append("4. Find item by id" + ln)
                 .append("5. Find item by name" + ln)
-                .append("6.Exit from programm" + ln)
+                .append("6. Exit from programm" + ln)
                 .append("Удаляю заявку" + ln)
                 .append("Item was delete" + ln)
                 .toString()));
@@ -133,7 +133,7 @@ public class StartUITest {
                 .append("3. Delete item" + ln)
                 .append("4. Find item by id" + ln)
                 .append("5. Find item by name" + ln)
-                .append("6.Exit from programm" + ln)
+                .append("6. Exit from programm" + ln)
                 .append("Заявка с именем " +  temp.getName() + " и айди " + temp.getId() + " выведена" + ln)
                 .append("Заявка с именем " +  temp2.getName() + " и айди " + temp2.getId() + " выведена" + ln)
                 .toString()));
