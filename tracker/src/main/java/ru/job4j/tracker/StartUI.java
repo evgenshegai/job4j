@@ -19,7 +19,7 @@ public class StartUI {
     private static final String FINDITEMBYID = "4";
     private static final String FINDITEMBYNAME = "5";
     private static final String EXIT = "6";
-    private int count;
+
 
 
     public StartUI(Input input, Tracker tracker) {
@@ -31,13 +31,11 @@ public class StartUI {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
         List<Integer> ranges = new ArrayList<>();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            ranges.add(i);
+        }
+
         do {
-            if (count == 0) {
-            for (int i = 0; i < menu.getActionsLentgh(); i++) {
-                ranges.add(i);
-                count++;
-            }
-            }
             menu.show();
             menu.select(input.ask("select:", ranges));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
