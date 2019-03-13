@@ -19,25 +19,25 @@ public class StartUI {
     private static final String FINDITEMBYID = "4";
     private static final String FINDITEMBYNAME = "5";
     private static final String EXIT = "6";
-
+    private final MenuTracker MENU;
 
 
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
+        MENU = new MenuTracker(this.input, this.tracker);
     }
 
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        MENU.fillActions();
         List<Integer> ranges = new ArrayList<>();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+        for (int i = 0; i < MENU.getActionsLentgh(); i++) {
             ranges.add(i);
         }
 
         do {
-            menu.show();
-            menu.select(input.ask("select:", ranges));
+            MENU.show();
+            MENU.select(input.ask("select:", ranges));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
