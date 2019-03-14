@@ -18,7 +18,7 @@ public class BishopWhite extends Figure {
 
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException {
+    public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException  {
          if (!(this.moveDiagonal(source, dest))) {
              throw new ImposibleMoveException("impossible move exception");
          }
@@ -30,6 +30,8 @@ public class BishopWhite extends Figure {
          }
         return steps;
     }
+
+
 
     private boolean moveDiagonal(Cell source, Cell dest) {
         return Math.abs(source.x - dest.x) == Math.abs(source.y - dest.y);

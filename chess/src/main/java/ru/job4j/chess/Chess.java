@@ -39,7 +39,7 @@ public class Chess extends  Application {
         return rect;
     }
 
-    private Rectangle buildFigure(int x, int y, int size, String image) {
+    private Rectangle buildFigure(int x, int y, int size, String image)  {
         Rectangle rect = new Rectangle();
         rect.setX(x);
         rect.setY(y);
@@ -60,17 +60,20 @@ public class Chess extends  Application {
                     rect.setY(event.getY() - size / 2);
                 }
         );
-        rect.setOnMouseReleased(
-                event -> {
-                    if (logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
-                        rect.setX(((int) event.getX() / 40) * 40 + 5);
-                        rect.setY(((int) event.getY() / 40) * 40 + 5);
-                    } else {
-                        rect.setX(((int) momento.getX() / 40) * 40 + 5);
-                        rect.setY(((int) momento.getY() / 40) * 40 + 5);
+
+            rect.setOnMouseReleased(
+
+                    event -> {
+                        if (logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
+                            rect.setX(((int) event.getX() / 40) * 40 + 5);
+                            rect.setY(((int) event.getY() / 40) * 40 + 5);
+                        } else {
+                            rect.setX(((int) momento.getX() / 40) * 40 + 5);
+                            rect.setY(((int) momento.getY() / 40) * 40 + 5);
+                        }
                     }
-                }
-        );
+            );
+
         return rect;
     }
 
@@ -135,22 +138,27 @@ public class Chess extends  Application {
     }
 
     public void buildWhiteTeam(Group grid) {
-        this.add(new PawnWhite(Cell.A2), grid);
-        this.add(new PawnWhite(Cell.B2), grid);
-        this.add(new PawnWhite(Cell.C2), grid);
-        this.add(new PawnWhite(Cell.D2), grid);
-        this.add(new PawnWhite(Cell.E2), grid);
-        this.add(new PawnWhite(Cell.F2), grid);
-        this.add(new PawnWhite(Cell.G2), grid);
-        this.add(new PawnWhite(Cell.H2), grid);
-        this.add(new RookWhite(Cell.A1), grid);
-        this.add(new KnightWhite(Cell.B1), grid);
-        this.add((Figure) new BishopWhite(Cell.C1), grid);
-        this.add(new QeenWhite(Cell.D1), grid);
-        this.add(new KingWhite(Cell.E1), grid);
-        this.add((Figure) new BishopWhite(Cell.F1), grid);
-        this.add(new KnightWhite(Cell.G1), grid);
-        this.add(new RookWhite(Cell.H1), grid);
+        try {
+            this.add(new PawnWhite(Cell.A2), grid);
+            this.add(new PawnWhite(Cell.B2), grid);
+            this.add(new PawnWhite(Cell.C2), grid);
+            this.add(new PawnWhite(Cell.D2), grid);
+            this.add(new PawnWhite(Cell.E2), grid);
+            this.add(new PawnWhite(Cell.F2), grid);
+            this.add(new PawnWhite(Cell.G2), grid);
+            this.add(new PawnWhite(Cell.H2), grid);
+            this.add(new RookWhite(Cell.A1), grid);
+            this.add(new KnightWhite(Cell.B1), grid);
+            this.add(new QeenWhite(Cell.D1), grid);
+            this.add(new KingWhite(Cell.E1), grid);
+            this.add(new KnightWhite(Cell.G1), grid);
+            this.add(new RookWhite(Cell.H1), grid) ;
+            this.add((Figure) new BishopWhite(Cell.C1), grid);
+            this.add((Figure) new BishopWhite(Cell.F1), grid);
+        } catch (ClassCastException cce) {
+            cce.printStackTrace();
+            System.out.println("Exception");
+        }
     }
 
     public void add(Figure figure, Group grid) {
