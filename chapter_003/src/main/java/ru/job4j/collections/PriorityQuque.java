@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 public class PriorityQuque {
 
-    private LinkedList<Task> tasks = new LinkedList<Task>();
-    private int index;
+    private LinkedList<Task> tasks = new LinkedList<>();
+
     /**
      * Метод должен вставлять в нужную позицию элемент.
      * Позиция определять по полю приоритет.
@@ -13,13 +13,22 @@ public class PriorityQuque {
      * @param task задача
      */
     public void put(Task task) {
-        if (tasks.size() == 0 || index < task.getPriority()) {
-            while (index < task.getPriority()) {
-                tasks.add(index, null);
-                index++;
-            }
+        int index = 0;
+        if (tasks.size() == 0) {
+            tasks.add(task);
+            return;
         }
-        tasks.add(task.getPriority(), task);
+        for (Task temp : tasks) {
+            index++;
+            if (task.getPriority() <= temp.getPriority()) {
+               tasks.add(--index, task);
+               break;
+           } else {
+             continue;
+           }
+       }
+
+
     }
 
     public Task take() {
