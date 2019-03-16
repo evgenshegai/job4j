@@ -1,9 +1,12 @@
+
 package ru.job4j.tracker;
+
 
 /**
  * Реализую события на внутренних классах
  * @author Shegai Evgenii
- */
+ **/
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +122,7 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            Item[] result = tracker.findAll();
+            List<Item> result = tracker.findAll();
             for (Item temp : result) {
                 if (temp != null) {
                     System.out.println("Заявка с именем " + temp.getName() + " и айди " + temp.getId() + " выведена");
@@ -160,7 +163,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("Нахожу зхаявку по имени");
             String name = input.ask("Введите имя заявки");
-            Item[] result = tracker.findByName(name);
+            List<Item> result = tracker.findByName(name);
             for (Item temp : result) {
                 if (temp != null) {
                     System.out.println("Заявка с именем " + temp.getName() + " найдена");
@@ -185,3 +188,4 @@ public class MenuTracker {
 
 
 }
+

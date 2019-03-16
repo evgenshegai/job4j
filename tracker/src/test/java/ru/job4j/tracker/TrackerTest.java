@@ -9,6 +9,10 @@ package ru.job4j.tracker;
  */
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -24,7 +28,7 @@ public class TrackerTest {
         assertThat(result, is(item));
     }
 
-    @Test
+  @Test
     public void whenReplaceById() {
         Tracker tracker = new Tracker();
         Item first = new Item("test", "desc", 1);
@@ -33,6 +37,7 @@ public class TrackerTest {
         assertThat(tracker.replace(temp.getId(), second), is(true));
     }
 
+
     @Test
     public void whenArrayItemReturn() {
         Tracker tracker = new Tracker();
@@ -40,19 +45,22 @@ public class TrackerTest {
         Item second = new Item("test2", "desc2", 2);
         tracker.add(first);
         tracker.add(second);
-        assertThat(tracker.findAll()[0], is(first));
+        assertThat(tracker.findAll().get(0), is(first));
     }
+
 
     @Test
     public void whenFindByName() {
         Tracker tracker = new Tracker();
         Item first = new Item("test", "desc", 1);
         Item second = new Item("test2", "desc2", 2);
-        Item[] expect = new Item[] {second};
+        List<Item> expect = new ArrayList<>();
+        expect.add(second);
         tracker.add(first);
         tracker.add(second);
         assertThat(tracker.findByName(second.getName()), is(expect));
     }
+
 
     @Test
     public void whenFindById() {
@@ -73,6 +81,6 @@ public class TrackerTest {
         Item temp = tracker.add(first);
         tracker.add(second);
         tracker.delete(temp.getId());
-        assertThat(tracker.findAll()[0].getName(), is(second.getName()));
+        assertThat(tracker.findAll().get(0).getName(), is(second.getName()));
     }
 }

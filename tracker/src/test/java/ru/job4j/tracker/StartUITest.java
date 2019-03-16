@@ -1,4 +1,6 @@
+
 package ru.job4j.tracker;
+
 
 /**
  * Test.
@@ -7,6 +9,7 @@ package ru.job4j.tracker;
  * @version $Id$
  * @since 0.1
  */
+
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;

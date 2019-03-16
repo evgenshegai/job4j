@@ -1,12 +1,15 @@
+
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Основной класс трекера
  * @author Evgenii Shegai
  */
+
 
 public class StartUI {
 
@@ -63,7 +66,7 @@ public class StartUI {
 
     private void showAll() {
         System.out.println("Вывожу все заявки");
-        Item[] result = tracker.findAll();
+        List<Item> result = tracker.findAll();
         for (Item temp : result) {
             if (temp != null) {
                 System.out.println("Заявка с именем " + temp.getName() + " и айди " + temp.getId() + " выведена");
@@ -108,7 +111,7 @@ public class StartUI {
     private void findByName() {
         System.out.println("Нахожу зхаявку по имени");
         String name = this.input.ask("Введите имя заявки");
-        Item[] result = this.tracker.findByName(name);
+        List<Item> result = this.tracker.findByName(name);
         for (Item temp : result) {
             if (temp != null) {
                 System.out.println("Заявка с именем " + temp.getName() + " найдена");
@@ -121,3 +124,4 @@ public class StartUI {
     }
 
 }
+
