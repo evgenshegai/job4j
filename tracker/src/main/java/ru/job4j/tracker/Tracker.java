@@ -67,7 +67,7 @@ public class Tracker {
 
     public Item findById(String id) {
         Item result = null;
-        for (int index = 0; index <= list.size(); index++) {
+        for (int index = 0; index < list.size(); index++) {
             if (list.get(index).getId().equals(id)) {
                 result = list.get(index);
                 break;
@@ -80,9 +80,8 @@ public class Tracker {
         boolean result = false;
         for (int index = 0; index < list.size(); index++) {
             if (list.get(index) != null && list.get(index).getId().equals(id)) {
-                 result = list.remove(list.get(index));
-               // System.arraycopy(items, index + 1, items, index, items.length - index - 1);
-               // result = true;
+                list.remove(index);
+                 result = true;
                 break;
             }
         }
