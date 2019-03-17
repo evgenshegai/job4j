@@ -19,6 +19,10 @@ public class User2 implements Comparable<User2> {
         return age;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public int compareTo(User2 o) {
         int result = 0;
