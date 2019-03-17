@@ -5,7 +5,7 @@ package ru.job4j.collections;
  * @author Evgenii Shegai
  */
 
-public class User {
+public class User  {
 
     private int id;
     private String city;
@@ -20,4 +20,5 @@ public class User {
     public int getId() {
         return id;
     }
+
 }

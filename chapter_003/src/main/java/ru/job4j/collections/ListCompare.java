@@ -18,14 +18,14 @@ public class ListCompare implements Comparator<String> {
         int size = Math.min(value, value2);
         for (int index = 0; index < size; index++) {
           result =  Character.compare(o1.charAt(index), o2.charAt(index));
-          if(result != 0) {
+          if (result != 0) {
               result = o1.charAt(index) - o2.charAt(index);
               break;
           }
         }
-        if(result == 0) {
+        if (result == 0) {
            result = value - value2;
         }
-        return result ;
+        return result;
     }
 }

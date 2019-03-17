@@ -9,9 +9,9 @@ import java.util.*;
 
 public class SortUser {
 
-    public Set<User2> sort(List<User2> array){
+    public Set<User2> sort(List<User2> array) {
         Set<User2> result = new TreeSet<>();
-        for(User2 temp : array) {
+        for (User2 temp : array) {
             if (temp != null) {
                 result.add(temp);
             }
@@ -27,7 +27,7 @@ public class SortUser {
                 int res = 0;
                 if (o1.getName().length() > o2.getName().length()) {
                     res = 1;
-                } else if(o1.getName().length() < o2.getName().length()) {
+                } else if (o1.getName().length() < o2.getName().length()) {
                     res = -1;
                 }
                 return res;

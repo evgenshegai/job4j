@@ -62,6 +62,6 @@ public class SortUserTest {
         expect.add(user4);
         expect.add(user2);
         expect.add(user);
-        assertThat(result , is(expect));
+        assertThat(result, is(expect));
     }
 }
