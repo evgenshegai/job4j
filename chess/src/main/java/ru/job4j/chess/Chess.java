@@ -152,7 +152,7 @@ public class Chess extends  Application {
             this.add(new QeenWhite(Cell.D1), grid);
             this.add(new KingWhite(Cell.E1), grid);
             this.add(new KnightWhite(Cell.G1), grid);
-            this.add(new RookWhite(Cell.H1), grid) ;
+            this.add(new RookWhite(Cell.H1), grid);
             this.add((Figure) new BishopWhite(Cell.C1), grid);
             this.add((Figure) new BishopWhite(Cell.F1), grid);
         } catch (ClassCastException cce) {
