@@ -1,4 +1,4 @@
-package ru.job4j.collections;
+package ru.job4j.collections.testbank;
 
 /**
  * class User3
@@ -16,6 +16,8 @@ public class User3 {
         this.name = name;
         this.passport = passport;
     }
+
+
 
 
     public int getPassport() {
