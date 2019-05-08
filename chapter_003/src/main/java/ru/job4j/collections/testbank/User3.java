@@ -10,17 +10,15 @@ import java.util.Objects;
 public class User3 {
 
     private String name;
-    private int passport;
+    private String passport;
 
-    public User3(String name, int passport) {
+    public User3(String name, String passport) {
         this.name = name;
         this.passport = passport;
     }
 
 
-
-
-    public int getPassport() {
+    public String getPassport() {
         return passport;
     }
 
@@ -33,7 +31,7 @@ public class User3 {
             return false;
         }
         User3 user3 = (User3) o;
-        return passport == user3.passport && Objects.equals(name, user3.name);
+        return name.equals(user3.name) && passport.equals(user3.passport);
     }
 
     @Override

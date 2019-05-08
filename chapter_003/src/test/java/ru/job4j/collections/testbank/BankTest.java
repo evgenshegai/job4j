@@ -14,7 +14,7 @@ public class BankTest {
 
     @Test
     public void whenAddUserInMap() {
-        User3 user = new User3("Petr", 12345);
+        User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
         Map<User3, List<Account>> map = bank.getMap();
@@ -24,8 +24,8 @@ public class BankTest {
 
     @Test
     public void whenAddThenDeleteUser() {
-        User3 user = new User3("Petr", 12345);
-        User3 user3 = new User3("Oleg", 54321);
+        User3 user = new User3("Petr", "12345");
+        User3 user3 = new User3("Oleg", "54321");
         Bank bank = new Bank();
         bank.addUser(user);
         bank.addUser(user3);
@@ -37,7 +37,7 @@ public class BankTest {
 
     @Test
     public void whenAddAccount() {
-        User3 user = new User3("Petr", 12345);
+        User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
         Account account = new Account(100, 7788);
@@ -48,7 +48,7 @@ public class BankTest {
 
     @Test
     public void whenAddThenDeleteAccount() {
-        User3 user = new User3("Petr", 12345);
+        User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
         Account account = new Account(100, 7788);
@@ -60,7 +60,7 @@ public class BankTest {
 
     @Test
     public void whenGetAccountsUser() {
-        User3 user = new User3("Petr", 12345);
+        User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
         Account account = new Account(100, 7788);
@@ -71,8 +71,8 @@ public class BankTest {
 
     @Test
     public void whenTransferMoney() {
-        User3 user = new User3("Vova", 987654);
-        User3 user2 = new User3("Misha", 34562);
+        User3 user = new User3("Vova", "987654");
+        User3 user2 = new User3("Misha", "34562");
         Bank bank = new Bank();
         bank.addUser(user);
         bank.addUser(user2);

@@ -20,10 +20,10 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        int pass = Integer.valueOf(passport);
+
         Set<User3> users = map.keySet();
         for (User3 temp : users) {
-            if (temp.getPassport() == pass) {
+            if (temp.getPassport().equals(passport)) {
                 List<Account> list = map.get(temp);
                 list.add(account);
                 break;
@@ -37,10 +37,10 @@ public class Bank {
 
 
     public void deleteAccountFromUser(String passport, Account account) {
-        int pass = Integer.valueOf(passport);
+
         Set<User3> users = map.keySet();
         for (User3 temp : users) {
-            if (temp.getPassport() == pass) {
+            if (temp.getPassport().equals(passport)) {
                 for (int i = 0; i < map.get(temp).size(); i++) {
                     if (map.get(temp).get(i) == account) {
                         map.get(temp).remove(i);
@@ -52,11 +52,11 @@ public class Bank {
     }
 
     public List<Account> getUserAccounts(String passport)  {
-       int pass = Integer.valueOf(passport);
+
         Set<User3> users = map.keySet();
         List<Account> list = new ArrayList<>();
         for (User3 temp : users) {
-            if (temp.getPassport() == pass) {
+            if (temp.getPassport().equals(passport)) {
                  list = map.get(temp);
             }
         }
@@ -66,37 +66,23 @@ public class Bank {
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = true;
-        int src = Integer.valueOf(srcPassport);
-        int  dest = Integer.valueOf(destPassport);
-        int srcReq = Integer.valueOf(srcRequisite);
-        int destReq = Integer.valueOf(dstRequisite);
-        Set<User3> users = map.keySet();
         int count = 0;
-        for (User3 temp : users) {
-            if (temp.getPassport() == src) {
-                count += checkRequisites(srcReq, temp, amount);
+        List<Account> temp = getUserAccounts(srcPassport);
+        for (Account account : temp) {
+            if (account.getRequisites() == Integer.valueOf(srcRequisite) && account.getValue() >= amount) {
+                count++;
             }
-            if (temp.getPassport() == dest) {
-                count += checkRequisites(destReq, temp, 0.0);
+         }
+        temp = getUserAccounts(destPassport);
+        for (Account account : temp) {
+            if (account.getRequisites() == Integer.valueOf(dstRequisite)) {
+                count++;
             }
-
         }
-        if (count != 2)  {
+        if (count != 2) {
             result = false;
-        }
-        return  result;
-    }
-
-    private int checkRequisites(int req, User3 temp, double amount) {
-        int result = 0;
-        List<Account> list = map.get(temp);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getValue() >= amount && list.get(i).getRequisites() == req) {
-                result++;
-            }
         }
         return result;
     }
-
 
 }
