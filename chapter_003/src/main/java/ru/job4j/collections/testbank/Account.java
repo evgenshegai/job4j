@@ -10,9 +10,9 @@ import java.util.Objects;
 public class Account {
 
     private int value;
-    private int requisites;
+    private String requisites;
 
-    public Account(int value, int requisites) {
+    public Account(int value, String requisites) {
         this.value = value;
         this.requisites = requisites;
     }
@@ -21,7 +21,11 @@ public class Account {
         return value;
     }
 
-    public int getRequisites() {
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getRequisites() {
         return requisites;
     }
 
@@ -34,7 +38,7 @@ public class Account {
             return false;
         }
         Account account = (Account) o;
-        return value == account.value && requisites == account.requisites;
+        return value == account.value && requisites.equals(account.requisites);
     }
 
     @Override

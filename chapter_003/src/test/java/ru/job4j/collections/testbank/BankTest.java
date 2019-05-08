@@ -40,10 +40,10 @@ public class BankTest {
         User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
-        Account account = new Account(100, 7788);
+        Account account = new Account(100, "7788");
         bank.addAccountToUser("12345", account);
         Map<User3, List<Account>> map = bank.getMap();
-        assertThat(map.get(user).get(0).getRequisites(), is(7788));
+        assertThat(map.get(user).get(0).getRequisites(), is("7788"));
     }
 
     @Test
@@ -51,7 +51,7 @@ public class BankTest {
         User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
-        Account account = new Account(100, 7788);
+        Account account = new Account(100, "7788");
         bank.addAccountToUser("12345", account);
         bank.deleteAccountFromUser("12345", account);
         Map<User3, List<Account>> map = bank.getMap();
@@ -63,10 +63,10 @@ public class BankTest {
         User3 user = new User3("Petr", "12345");
         Bank bank = new Bank();
         bank.addUser(user);
-        Account account = new Account(100, 7788);
+        Account account = new Account(100, "7788");
         bank.addAccountToUser("12345", account);
         List<Account> list = bank.getUserAccounts("12345");
-        assertThat(list.get(0).getRequisites(), is(7788));
+        assertThat(list.get(0).getRequisites(), is("7788"));
     }
 
     @Test
@@ -76,8 +76,8 @@ public class BankTest {
         Bank bank = new Bank();
         bank.addUser(user);
         bank.addUser(user2);
-        Account account = new Account(100, 7788);
-        Account account2 = new Account(10, 6644);
+        Account account = new Account(100, "7788");
+        Account account2 = new Account(10, "6644");
         bank.addAccountToUser("987654", account);
         bank.addAccountToUser("34562", account2);
         boolean result = bank.transferMoney("987654", "7788", "34562", "6644", 50.0);

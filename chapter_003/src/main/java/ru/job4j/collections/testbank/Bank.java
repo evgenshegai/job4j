@@ -42,7 +42,7 @@ public class Bank {
         for (User3 temp : users) {
             if (temp.getPassport().equals(passport)) {
                 for (int i = 0; i < map.get(temp).size(); i++) {
-                    if (map.get(temp).get(i) == account) {
+                    if (map.get(temp).get(i).equals(account)) {
                         map.get(temp).remove(i);
                         break;
                     }
@@ -65,22 +65,34 @@ public class Bank {
 
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
-        boolean result = true;
-        int count = 0;
-        List<Account> temp = getUserAccounts(srcPassport);
-        for (Account account : temp) {
-            if (account.getRequisites() == Integer.valueOf(srcRequisite) && account.getValue() >= amount) {
-                count++;
-            }
-         }
-        temp = getUserAccounts(destPassport);
-        for (Account account : temp) {
-            if (account.getRequisites() == Integer.valueOf(dstRequisite)) {
-                count++;
+        boolean result = false;
+        final Account src = this.getAccount(srcPassport, srcRequisite);
+        final Account dest = this.getAccount(destPassport, dstRequisite);
+        if (src != null && dest != null) {
+            result = this.transfer(dest, amount);
+        }
+        return result;
+
+    }
+
+    private Account getAccount(String passport, String req) {
+        Account result = null;
+        final  List<Account> list = this.getUserAccounts(passport);
+        for (Account account : list) {
+            if (account.getRequisites().equals(req)) {
+                result = account;
+                break;
             }
         }
-        if (count != 2) {
-            result = false;
+        return result;
+    }
+
+    private boolean transfer(Account dest, double amount) {
+        boolean result = false;
+        int temp = dest.getValue();
+        dest.setValue((int) (temp + amount));
+        if (dest.getValue() == temp + amount) {
+            result = true;
         }
         return result;
     }
