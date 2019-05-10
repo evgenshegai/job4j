@@ -6,6 +6,7 @@ package ru.job4j.collections.testbank;
  */
 
 import java.util.*;
+import ru.job4j.collections.testbank.Account;
 
 public class Bank {
 
@@ -69,7 +70,7 @@ public class Bank {
         final Account src = this.getAccount(srcPassport, srcRequisite);
         final Account dest = this.getAccount(destPassport, dstRequisite);
         if (src != null && dest != null) {
-            result = this.transfer(dest, amount);
+            result = src.transfer(dest, amount);
         }
         return result;
 
@@ -87,14 +88,6 @@ public class Bank {
         return result;
     }
 
-    private boolean transfer(Account dest, double amount) {
-        boolean result = false;
-        int temp = dest.getValue();
-        dest.setValue((int) (temp + amount));
-        if (dest.getValue() == temp + amount) {
-            result = true;
-        }
-        return result;
-    }
+
 
 }

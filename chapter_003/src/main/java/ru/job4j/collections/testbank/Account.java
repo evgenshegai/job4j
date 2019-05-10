@@ -45,4 +45,14 @@ public class Account {
     public int hashCode() {
         return Objects.hash(value, requisites);
     }
+
+    public boolean transfer(Account dest, double amount) {
+        boolean result = false;
+        if (this.value >= amount) {
+            this.value = (int) (this.value - amount);
+            dest.value = (int) (dest.value + amount);
+            result = true;
+        }
+        return result;
+    }
 }
