@@ -5,3 +5,4 @@
 [![codecov](https://codecov.io/gh/evgenshegai/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/evgenshegai/job4j)
 #Объединение зафиксированных измененений
 # В курсе производилась работа с ветками git
+#Создание ветки из IDEA
