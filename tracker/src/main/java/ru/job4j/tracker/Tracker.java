@@ -49,19 +49,18 @@ public class Tracker {
             result.add(list.get(index));
 
         }
-       // result = Arrays.copyOf(result, result.s - count);
+
         return result;
     }
 
     public List<Item> findByName(String name) {
         List<Item> result = new ArrayList<>();
-       // int index2 = 0;
         for (int index = 0; index < list.size(); index++) {
             if (list.get(index) != null && list.get(index).getName().equals(name)) {
                 result.add(list.get(index));
             }
         }
-       // result = Arrays.copyOf(result, result.length - index2);
+
         return result;
     }
 
