@@ -1,7 +1,5 @@
 
 package ru.job4j.tracker;
-
-
 /**
  * Реализую события на внутренних классах
  * @author Shegai Evgenii
@@ -16,11 +14,9 @@ import java.util.function.Consumer;
 class DeleteItem extends BaseAction {
 
     public DeleteItem(int key, String name) {
-          super(key, name);
+        super(key, name);
     }
-
     private boolean result;
-
     @Override
     public void execute(Input input, Tracker tracker) {
         System.out.println("Удаляю заявку");
@@ -32,15 +28,14 @@ class DeleteItem extends BaseAction {
             System.out.println("Item not found");
         }
     }
-
 }
 
 public class MenuTracker {
-
     private Input input;
     private Tracker tracker;
     private List<UserAction> actions = new ArrayList<>();
     private Consumer<String> output;
+
 
     public MenuTracker(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
@@ -52,6 +47,7 @@ public class MenuTracker {
         return this.actions.size();
     }
 
+
     public void fillActions() {
         this.actions.add(0, new AddItem(0, "Add the item"));
         this.actions.add(1, new  MenuTracker.UpdateItem(1, "Edit the item"));
@@ -61,11 +57,9 @@ public class MenuTracker {
         this.actions.add(5, new FindItemsByName(5, "Find item by name"));
         this.actions.add(6, new ExitProgramm(6, "Exit from programm"));
     }
-
     public void select(int key) {
         this.actions.get(key).execute(this.input, this.tracker);
     }
-
     public void show() {
         for (UserAction action : this.actions) {
             if (action != null) {
@@ -75,7 +69,6 @@ public class MenuTracker {
     }
 
     private class AddItem extends BaseAction {
-
         public AddItem(int key, String name) {
             super(key, name);
         }
@@ -97,11 +90,11 @@ public class MenuTracker {
         public UpdateItem(int key, String name) {
             super(key, name);
         }
-
         private boolean result;
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("Редактирую заявку");
             output.accept("Редактирую заявку");
             String id = input.ask("Введите айди завки");
             String name = input.ask("Введите имя новой заявки");
@@ -117,13 +110,10 @@ public class MenuTracker {
         }
 
     }
-
     private class ShowItems extends BaseAction {
-
         public ShowItems(int key, String name) {
             super(key, name);
         }
-
         @Override
         public void execute(Input input, Tracker tracker) {
             List<Item> result = tracker.findAll();
@@ -133,38 +123,35 @@ public class MenuTracker {
                 }
             }
         }
+    }
+    private class FindItemById extends BaseAction {
+        public FindItemById(int key, String name) {
+            super(key, name);
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+            System.out.println("Нахожу заявку по айди");
+            output.accept("Нахожу заявку по айди");
+            Item result = null;
+            String id = input.ask("Введите айди заявки");
+            result = tracker.findById(id);
+            if (result != null) {
+                output.accept("Item was found" + result.getName());
+            } else {
+                output.accept("Item not found");
+            }
+        }
 
     }
-
-   private class FindItemById extends BaseAction {
-
-       public FindItemById(int key, String name) {
-           super(key, name);
-       }
-
-       @Override
-       public void execute(Input input, Tracker tracker) {
-           output.accept("Нахожу заявку по айди");
-           Item result = null;
-           String id = input.ask("Введите айди заявки");
-           result = tracker.findById(id);
-           if (result != null) {
-               output.accept("Item was found" + result.getName());
-           } else {
-               output.accept("Item not found");
-           }
-       }
-
-   }
-
     private class FindItemsByName extends BaseAction {
-
         public FindItemsByName(int key, String name) {
             super(key, name);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
+            System.out.println("Нахожу зхаявку по имени");
             output.accept("Нахожу зхаявку по имени");
             String name = input.ask("Введите имя заявки");
             List<Item> result = tracker.findByName(name);
@@ -174,11 +161,8 @@ public class MenuTracker {
                 }
             }
         }
-
     }
-
     private class ExitProgramm extends BaseAction {
-
         public ExitProgramm(int key, String name) {
             super(key, name);
         }
@@ -187,9 +171,5 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             output.accept("Для выхода из программы нажмите - y");
         }
-
-    }
-
-
 }
-
+    }

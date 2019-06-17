@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -53,12 +52,11 @@ public class TrackerTest {
     public void whenFindByName() {
         Tracker tracker = new Tracker();
         Item first = new Item("test", "desc", 1);
-        Item second = new Item("test2", "desc2", 2);
-        List<Item> expect = new ArrayList<>();
-        expect.add(second);
+        Item second = (new Item("test2", "desc2", 2));
         tracker.add(first);
         tracker.add(second);
-        assertThat(tracker.findByName(second.getName()), is(expect));
+        List<Item>  result = tracker.findByName(second.getName());
+        assertThat(result.get(0).getName(), is(second.getName()));
     }
 
 

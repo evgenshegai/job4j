@@ -3,20 +3,19 @@ package ru.job4j.tracker;
 /**
  * Трекер
  * @author EvgeniiShegai (evgeniishegai@yandex.ru)
+ * version 0.1
  */
 
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Tracker {
 
     private List<Item> list = new ArrayList<>();
     private static final Random RN = new Random();
-
-
-
     public Item add(Item item) {
         if (item != null) {
             item.setId(this.generatedId());
@@ -25,9 +24,11 @@ public class Tracker {
         return item;
     }
 
+
     private String generatedId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt(100));
     }
+
 
     public boolean replace(String id, Item item) {
         boolean result = false;
@@ -41,46 +42,25 @@ public class Tracker {
         }
         return result;
     }
-
     public List<Item> findAll() {
-        List<Item> result = new ArrayList<>();
-       // int count = 0;
-        for (int index = 0; index < list.size(); index++) {
-            result.add(list.get(index));
-
-        }
-
-        return result;
+        return list.stream().collect(Collectors.toList());
     }
 
     public List<Item> findByName(String name) {
-        List<Item> result = new ArrayList<>();
-        for (int index = 0; index < list.size(); index++) {
-            if (list.get(index) != null && list.get(index).getName().equals(name)) {
-                result.add(list.get(index));
-            }
-        }
-
-        return result;
+        return list.stream().filter(s-> s.getName().equals(name)).collect(Collectors.toList());
     }
 
     public Item findById(String id) {
-        Item result = null;
-        for (int index = 0; index < list.size(); index++) {
-            if (list.get(index).getId().equals(id)) {
-                result = list.get(index);
-                break;
-            }
-        }
-        return result;
+        return list.stream().filter(s-> s.getId().equals(id)).findAny().get();
     }
+
 
     public boolean delete(String id) {
         boolean result = false;
         for (int index = 0; index < list.size(); index++) {
             if (list.get(index) != null && list.get(index).getId().equals(id)) {
                 list.remove(index);
-                 result = true;
+                result = true;
                 break;
             }
         }

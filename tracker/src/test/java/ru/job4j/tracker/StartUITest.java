@@ -91,7 +91,7 @@ public class StartUITest {
         tracker.add(item2);
         Input input = new StubInput(new String[] {"3", temp.getId(), "y"});
         new StartUI(input, tracker, output).init();
-        assertNull(tracker.findById(temp.getId()));
+        assertThat(tracker.findByName(item2.getName()).size(), is(1));
     }
 
     @Test

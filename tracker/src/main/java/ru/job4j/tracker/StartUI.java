@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 
@@ -117,10 +118,12 @@ public class StartUI {
         String name = this.input.ask("Введите имя заявки");
         List<Item> result = this.tracker.findByName(name);
         for (Item temp : result) {
-            if (temp != null) {
+            if (temp != null && temp.getName().equals(name)) {
                 System.out.println("Заявка с именем " + temp.getName() + " найдена");
             }
         }
+
+
     }
 
     public static void main(String[] args) {
