@@ -2,6 +2,13 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.firuges.Cell;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class Board   {
 
     private Figure[] figures = new Figure[32];
@@ -29,14 +36,11 @@ public class Board   {
     }
 
     private int findBy(Cell source) {
-        int result = -1;
-        for (int i = 0; i < figures.length; i++) {
-            if (figures[i] != null && figures[i].getPosition().equals(source)) {
-                result = i;
-                break;
-            }
-        }
-        return result;
+        return IntStream.range(0, this.figures.length - 1)
+                .filter(i->this.figures[i] != null)
+                .filter(i->this.figures[i].getPosition().equals(source))
+                .findFirst()
+                .orElse(-1);
     }
 
     private boolean hasAnotherFigures(Cell[] steps) {

@@ -3,6 +3,8 @@ package ru.job4j.chess;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
+import java.util.stream.IntStream;
+
 
 public class Logic {
 
@@ -34,13 +36,12 @@ public class Logic {
     }
 
     private int findBy(Cell cell) {
-        int rst = -1;
-        for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
-                rst = index;
-                break;
-            }
-        }
-        return rst;
+
+        return IntStream.range(0, this.figures.length - 1)
+                .filter(x -> this.figures[x] != null)
+                .filter(x -> this.figures[x].position().equals(cell))
+                .findFirst()
+                .orElse(-1);
     }
+
 }
