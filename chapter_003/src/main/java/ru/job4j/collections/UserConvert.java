@@ -3,18 +3,16 @@ package ru.job4j.collections;
 /**
  * Class UserConvert
  * @author Evgenii Shegai
+ * version 0.1
  */
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class UserConvert {
 
-    public HashMap<Integer, User> process(List<User> list) {
-        HashMap<Integer, User> map = new HashMap<>(list.size());
-        for (User user : list) {
-            map.put(user.getId(), user);
-        }
-        return map;
+    public Map<Integer, User> process(List<User> list) {
+       return list.stream().collect(Collectors.toMap(User::getId, u -> u));
     }
 }
