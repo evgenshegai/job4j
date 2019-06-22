@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * class Account
  * @author Shegai Evgenii
+ * version 0.1
  */
 
 public class Account {

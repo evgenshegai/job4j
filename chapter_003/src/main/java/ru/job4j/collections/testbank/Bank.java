@@ -3,10 +3,11 @@ package ru.job4j.collections.testbank;
 /**
    class Bank
   author@ Shegai Evgenii
+  version 0.1
  */
 
 import java.util.*;
-import ru.job4j.collections.testbank.Account;
+
 
 public class Bank {
 
@@ -52,16 +53,16 @@ public class Bank {
         }
     }
 
-    public List<Account> getUserAccounts(String passport)  {
-
+    public  List<Account> getUserAccounts(String passport)  {
+/*
         Set<User3> users = map.keySet();
         List<Account> list = new ArrayList<>();
         for (User3 temp : users) {
             if (temp.getPassport().equals(passport)) {
                  list = map.get(temp);
             }
-        }
-       return list;
+        }*/
+       return this.map.entrySet().stream().filter(u -> u.getKey().getPassport().equals(passport)).findFirst().map(Map.Entry::getValue).orElse(null);
     }
 
 
@@ -77,17 +78,15 @@ public class Bank {
     }
 
     private Account getAccount(String passport, String req) {
-        Account result = null;
+       /* Account result = null;
         final  List<Account> list = this.getUserAccounts(passport);
         for (Account account : list) {
             if (account.getRequisites().equals(req)) {
                 result = account;
                 break;
             }
-        }
-        return result;
+        }*/
+        return this.getUserAccounts(passport).stream().filter(a -> a.getRequisites().equals(req)).findFirst().orElse(null);
     }
-
-
 
 }
