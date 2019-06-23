@@ -55,7 +55,7 @@ public class BankTest {
         bank.addAccountToUser("12345", account);
         bank.deleteAccountFromUser("12345", account);
         Map<User3, List<Account>> map = bank.getMap();
-        assertThat(map.containsValue(account), is(false));
+        assertThat(map.get(user).size(), is(0));
     }
 
     @Test

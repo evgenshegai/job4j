@@ -22,16 +22,18 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-
-        Set<User3> users = map.keySet();
+       /* Set<User3> users = map.keySet();
         for (User3 temp : users) {
             if (temp.getPassport().equals(passport)) {
                 List<Account> list = map.get(temp);
                 list.add(account);
                 break;
             }
-        }
-     }
+        }*/
+       Optional<User3> temp = map.keySet().stream().filter(s -> s.getPassport().equals(passport)).findFirst();
+       map.get(temp.get()).add(account);
+
+    }
 
     public Map<User3, List<Account>> getMap() {
         return map;
@@ -39,8 +41,7 @@ public class Bank {
 
 
     public void deleteAccountFromUser(String passport, Account account) {
-
-        Set<User3> users = map.keySet();
+        /*Set<User3> users = map.keySet();
         for (User3 temp : users) {
             if (temp.getPassport().equals(passport)) {
                 for (int i = 0; i < map.get(temp).size(); i++) {
@@ -49,6 +50,15 @@ public class Bank {
                         break;
                     }
                 }
+            }
+        }*/
+        Optional<User3> temp = map.keySet().stream().filter(s -> s.getPassport().equals(passport)).findFirst();
+        Optional<Account> acc =  map.get(temp.get()).stream().filter(s -> s.getRequisites().equals(account.getRequisites()) && s.getValue() == account.getValue()).findFirst();
+        List<Account> list = map.get(temp.get());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getRequisites().equals(acc.get().getRequisites())) {
+                list.remove(i);
+                break;
             }
         }
     }
@@ -62,7 +72,7 @@ public class Bank {
                  list = map.get(temp);
             }
         }*/
-       return this.map.entrySet().stream().filter(u -> u.getKey().getPassport().equals(passport)).findFirst().map(Map.Entry::getValue).orElse(null);
+       return this.map.entrySet().stream().filter(u -> u.getKey().getPassport().equals(passport)).findFirst().map(Map.Entry::getValue).orElse(new ArrayList<>());
     }
 
 
