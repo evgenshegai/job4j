@@ -17,13 +17,12 @@ public class UserConvertTest {
     @Test
     public void whenProcessReturnHashMap() {
         UserConvert convert = new UserConvert();
-        List<User> list = new ArrayList<>();
-        list.add(new User(12, "Moscow", "VasyaPupkin"));
-        User user = new User(10, "Vladivostok", "qwerty");
-        list.add(user);
+        User user = new User(12, "Moscow", "VasyaPupkin");
+        User user2 = new User(10, "Vladivostok", "qwerty");
+        List<User> list = List.of(user, user2);
         Map<Integer, User> map;
         map = convert.process(list);
-        assertThat(map.get(10), is(user));
+        assertThat(map.get(10), is(user2));
     }
 
 }
