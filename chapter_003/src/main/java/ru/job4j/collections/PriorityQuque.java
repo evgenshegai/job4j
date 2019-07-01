@@ -13,12 +13,12 @@ public class PriorityQuque {
      * @param task задача
      */
     public void put(Task task) {
-        int index = 0;
+        var index = 0;
         if (tasks.size() == 0) {
             tasks.add(task);
             return;
         }
-        for (Task temp : tasks) {
+        for (var temp : tasks) {
             index++;
             if (task.getPriority() <= temp.getPriority()) {
                tasks.add(--index, task);
