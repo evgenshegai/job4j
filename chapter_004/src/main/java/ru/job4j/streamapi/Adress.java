@@ -1,8 +1,14 @@
 package ru.job4j.streamapi;
 
+/*
+   author Evgenii Shegai
+   version 0.1
+ */
+
+
 import java.util.Objects;
 
-public class Adress {
+public class Adress  {
 
     private String city;
     private String street;
@@ -14,6 +20,10 @@ public class Adress {
         this.street = street;
         this.home = home;
         this.apartment = apartment;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     @Override
