@@ -19,9 +19,9 @@ public class SchoolTest {
 
     @Test
     public void whenGetHighScore() {
-        Student student1 = new Student(50);
-        Student student2 = new Student(77);
-        Student student3 = new Student(69);
+        Student student1 = new Student(50, "qqq");
+        Student student2 = new Student(77, "www");
+        Student student3 = new Student(69, "zzz");
         List<Student> students = List.of(student1, student2, student3);
         Predicate<Student> predicate = s -> s.getScore() < 100 && s.getScore() > 70;
         List<Student> result = new School().collect(students, predicate);
@@ -31,9 +31,9 @@ public class SchoolTest {
 
     @Test
     public void whenGetMiddleScore() {
-        Student student1 = new Student(49);
-        Student student2 = new Student(90);
-        Student student3 = new Student(69);
+        Student student1 = new Student(49, "www");
+        Student student2 = new Student(90, "qqq");
+        Student student3 = new Student(69, "zzz");
         List<Student> students = List.of(student1, student2, student3);
         Predicate<Student> predicate = s -> s.getScore() < 70 && s.getScore() > 50;
         List<Student> result = new School().collect(students, predicate);
@@ -43,9 +43,9 @@ public class SchoolTest {
 
     @Test
     public void whenGetLowScore() {
-        Student student1 = new Student(50);
-        Student student2 = new Student(23);
-        Student student3 = new Student(78);
+        Student student1 = new Student(50, "qqq");
+        Student student2 = new Student(23, "www");
+        Student student3 = new Student(78, "zzz");
         List<Student> students = List.of(student1, student2, student3);
         Predicate<Student> predicate = s -> s.getScore() < 50 && s.getScore() > 0;
         List<Student> result = new School().collect(students, predicate);
